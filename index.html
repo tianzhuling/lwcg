@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>漫画上传平台</title>
+  <style>
+    :root {
+      --main-bg: #f9f9f9;
+      --radius: 12px;
+      --spacing: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: var(--spacing);
+      background-color: var(--main-bg);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: var(--spacing);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+    }
+
+    button {
+      background-color: #2d89ef;
+      color: white;
+      border: none;
+      margin-top: var(--spacing);
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:active {
+      background-color: #1b6dcf;
+    }
+
+    #status {
+      text-align: center;
+      margin-top: var(--spacing);
+      font-size: 1rem;
+      word-break: break-word;
+      /* 默认无背景色，颜色由JS控制 */
+      padding: 0;
+      border-radius: var(--radius);
+      transition: background-color 0.3s ease;
+    }
+
+    #preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    #preview img {
+      width: 80px;
+      height: auto;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>上传你的漫画</h1>
+    <form id="upload-form">
+      <label>漫画标题：
+        <input type="text" id="comic-title" placeholder="例如：龙珠Z" required />
+      </label>
+
+      <label>章节标题：
+        <input type="text" id="chapter-title" placeholder="第1话：少年悟空" required />
+      </label>
+
+      <label>上传图片（可多选）：
+        <input type="file" id="image-file" accept="image/*" multiple required />
+      </label>
+
+      <div id="preview"></div>
+
+      <button type="submit">开始上传</button>
+    </form>
+
+    <p id="status"></p>
+  </div>
+<!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <!-- vConsole（移动端调试控制台） -->
+  <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+  <script>new VConsole();</script>
+
+  <script>
+    const SUPABASE_URL = 'https://ukufabnmpevhmonxjmfb.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ⚠️ 请替换为你的 Key
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const form = document.getElementById('upload-form');
+    const statusEl = document.getElementById('status');
+    const preview = document.getElementById('preview');
+
+    // 显示状态消息（成功或失败）
+    function showStatus(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.style.color = isError ? '#d32f2f' : '#2e7d32';
+      statusEl.style.backgroundColor = isError ? '#fdecea' : '#e8f5e9';
+      statusEl.style.padding = '0.75rem';
+    }
+
+    // 预览上传图片
+    document.getElementById('image-file').addEventListener('change', (e) => {
+      preview.innerHTML = '';
+      const files = e.target.files;
+      for (const file of files) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        preview.appendChild(img);
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      showStatus('上传中...', false);
+
+      const comicTitle = document.getElementById('comic-title').value.trim();
+      const chapterTitle = document.getElementById('chapter-title').value.trim();
+      const files = document.getElementById('image-file').files;
+
+      if (!comicTitle || !chapterTitle || files.length === 0) {
+        showStatus('请填写完整信息并选择图片', true);
+        return;
+      }
+
+      try {
+        // 检查是否已有该漫画
+        const { data: existingComic, error: fetchError } = await supabase
+          .from('comics')
+          .select('id')
+          .eq('title', comicTitle)
+          .maybeSingle();
+        if (fetchError) throw fetchError;
+
+        let comicId;
+        if (existingComic) {
+          comicId = existingComic.id;
+        } else {
+          const { data: newComic, error: insertError } = await supabase
+            .from('comics')
+            .insert([{ title: comicTitle }])
+            .select()
+            .single();
+          if (insertError) throw insertError;
+          comicId = newComic.id;
+        }
+
+        // 插入章节
+        const { data: chapter, error: chapterError } = await supabase
+          .from('chapters')
+          .insert([{ title: chapterTitle, comic_id: comicId }])
+          .select()
+          .single();
+        if (chapterError) throw chapterError;
+// 上传每张图片并插入记录
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const filename = `${crypto.randomUUID()}-${file.name}`;
+
+          const { error: uploadError } = await supabase
+            .storage
+            .from('comics-image') // ✅ 确保你的 bucket 名为 comics-image
+            .upload(filename, file);
+          if (uploadError) throw uploadError;
+
+          const { data: publicUrlData } = supabase
+            .storage
+            .from('comics-image')
+            .getPublicUrl(filename);
+
+          const { error: insertImageError } = await supabase
+            .from('images')
+            .insert([{
+              chapter_id: chapter.id,
+              image_url: publicUrlData.publicUrl,
+              order_num: i + 1
+            }]);
+          if (insertImageError) throw insertImageError;
+        }
+
+        // 成功
+        showStatus('✅ 上传成功！', false);
+        form.reset();
+        preview.innerHTML = '';
+      } catch (err) {
+        console.error('❌ 错误：', err);
+        let message = '上传失败：';
+
+        if (err.message) {
+          message += err.message;
+        } else if (typeof err === 'object') {
+          message += JSON.stringify(err);
+        } else {
+          message += String(err);
+        }
+
+        showStatus(message, true);
+      }
+    });
+  </script>
+</body>
+</html>
