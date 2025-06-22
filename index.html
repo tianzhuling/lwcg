@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>漫画搜索</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
+  #search-input { width: 100%; padding: 0.5rem; font-size: 1rem; margin-bottom: 1rem; box-sizing: border-box; }
+  #search-results li { list-style: none; margin-bottom: 1rem; border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; display: flex; align-items: center; }
+  #search-results img { max-width: 100px; max-height: 140px; margin-right: 1rem; object-fit: cover; }
+  #search-results a { font-weight: bold; font-size: 1.2rem; color: #333; text-decoration: none; }
+  #search-results p { margin: 0.3rem 0 0; color: #666; flex: 1; }
+</style>
+</head>
+<body>
+  <h1>漫画搜索</h1>
+  <input type="text" id="search-input" placeholder="输入漫画标题搜索..." autocomplete="off" />
+  <ul id="search-results"></ul>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const supabaseUrl = 'https://ukufabnmpevhmonxjmfb.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrdWZhYm5tcGV2aG1vbnhqbWZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA1NTgyNjAsImV4cCI6MjA2NjEzNDI2MH0.xtW2AjVHYKvnjPjFqgYHF0iDLVB_KWhDi0MFU0NFKnA';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+
+    input.addEventListener('input', async () => {
+      const keyword = input.value.trim();
+      if (!keyword) {
+        results.innerHTML = '';
+        return;
+      }
+
+      // 搜索 comics 表，模糊匹配 title 字段
+      const { data: comics, error } = await supabase
+        .from('comics')
+        .select('id, title, description, cover_url')
+        .ilike('title', `%${keyword}%`)
+        .limit(10);
+
+      if (error) {
+        results.innerHTML = `<li style="color:red;">搜索出错：${error.message}</li>`;
+        return;
+      }
+
+      if (!comics || comics.length === 0) {
+        results.innerHTML = '<li>没有找到匹配的漫画</li>';
+        return;
+      }
+
+      // 直接用 comics.cover_url 显示封面（假设是公开 URL）
+      results.innerHTML = comics.map(comic => `
+        <li>
+          ${comic.cover_url ? `<img src="${comic.cover_url}" alt="${comic.title}封面" />` : ''}
+          <div>
+            <a href="/comic/${comic.id}" target="_blank" rel="noopener noreferrer">${comic.title}</a>
+            <p>${comic.description || '暂无简介'}</p>
+          </div>
+        </li>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
