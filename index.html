@@ -192,19 +192,27 @@ button:hover {
           .select()
           .single();
 
-        for (let i = 0; i < files.length; i++) {
+  for (let i = 0; i < files.length; i++) {
   const file = files[i];
   const filename = `${crypto.randomUUID()}-${file.name}`;
+
+  // ✅ 先执行上传
+  const { data: uploadData, error: uploadError } = await supabase
+    .storage
+    .from('comics-image')
+    .upload(filename, file);
+
   if (uploadError) {
     throw new Error(`上传失败: ${file.name}，错误信息: ${uploadError.message}`);
   }
 
+  // ✅ 再获取 publicUrl
   const { data: urlData } = supabase
     .storage
     .from('comics-image')
-    .getPublicUrl(filename);
+    .getPublicUrl(uploadData.path);
 
-  if (!urlData || !urlData.publicUrl) {
+  if (!urlData?.publicUrl) {
     throw new Error('无法获取上传后的图片URL');
   }
 
@@ -213,8 +221,7 @@ button:hover {
     image_url: urlData.publicUrl,
     order_num: i + 1
   }]);
-}
-
+            }
         showStatus('上传成功！');
         form.reset();
         preview.innerHTML = '';
