@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>章节阅读</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; background: #f5f5f5; }
+    img { width: 100%; max-width: 800px; display: block; margin: 1em auto; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    .back { text-align: center; margin-bottom: 1em; }
+    a { color: #3498db; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="back"><a href="javascript:history.back()">← 返回章节</a></div>
+  <div id="image-container">加载中...</div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    // 初始化 Supabase
+    const supabase = createClient(
+      'https://ukufabnmpevhmonxjmfb.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrdWZhYm5tcGV2aG1vbnhqbWZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA1NTgyNjAsImV4cCI6MjA2NjEzNDI2MH0.xtW2AjVHYKvnjPjFqgYHF0iDLVB_KWhDi0MFU0NFKnA'
+    )
+
+    // 获取章节ID
+    const params = new URLSearchParams(window.location.search)
+    const chapterId = params.get('id')
+
+    if (!chapterId) {
+      document.getElementById('image-container').innerHTML = '未提供章节 ID。'
+    } else {
+      // 查询图片列表
+      const { data, error } = await supabase
+        .from('images')
+        .select('*')
+        .eq('chapter_id', chapterId)
+        .order('order_num', { ascending: true })
+
+      const container = document.getElementById('image-container')
+      container.innerHTML = ''
+
+      if (error) {
+        container.textContent = '加载图片失败：' + error.message
+      } else if (data.length === 0) {
+        container.textContent = '该章节暂无图片。'
+      } else {
+        data.forEach(img => {
+          const imageEl = document.createElement('img')
+          imageEl.src = img.image_url
+          imageEl.alt = '漫画图片'
+          container.appendChild(imageEl)
+        })
+      }
+    }
+  </script>
+</body>
+</html>
