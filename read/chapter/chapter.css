@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+  padding: 1em;
+  background: #f5f5f5;
+}
+
+img {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  margin: 1em auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.back {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+}
