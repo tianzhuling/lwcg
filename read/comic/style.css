@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+#comic-detail {
+  text-align: center;
+}
+
+#comic-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#comic-cover img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+#comic-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+#chapter-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#chapter-list li {
+  margin-bottom: 1rem;
+}
+
+#chapter-list a {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+#btn-back {
+  display: block;
+  margin: 0 auto 24px;
+  padding: 8px 16px;
+  background: #555;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  text-align: center;
+}
