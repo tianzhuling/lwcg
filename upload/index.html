@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>老王漫画组-上传平台</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a id="btn-back" href="index.html">← 返回首页</a>
+
+  <div class="container">
+    <h1>上传你的漫画</h1>
+    <form id="upload-form">
+      <label>漫画标题：
+        <input type="text" id="comic-title" required />
+      </label>
+      <label>章节标题：
+        <input type="text" id="chapter-title" required />
+      </label>
+      <div id="new-comic-extra" style="display: none;">
+        <label>漫画简介（可选）：
+          <input type="text" id="comic-description" />
+        </label>
+        <label>上传封面（可选）：
+          <input type="file" id="comic-cover" accept="image/*" />
+        </label>
+      </div>
+      <label>上传图片：
+        <input type="file" id="image-file" accept="image/*" multiple required />
+      </label>
+      <div id="preview"></div>
+      <div id="upload-progress"></div>
+      <button type="submit">上传</button>
+    </form>
+    <p id="status"></p>
+  </div>
+
+  <div class="container">
+    <h2>浏览漫画章节</h2>
+    <form id="browse-form">
+      <label>漫画标题：
+        <input type="text" id="browse-comic-title" required />
+      </label>
+      <label>章节标题：
+        <input type="text" id="browse-chapter-title" required />
+      </label>
+      <button type="submit">加载图片</button>
+    </form>
+    <div id="browse-preview"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+  <script>new VConsole();</script>
+  <script src="main.js"></script>
+</body>
+</html>
