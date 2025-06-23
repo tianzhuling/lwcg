@@ -44,7 +44,7 @@ if (!comicId) {
   } else {
     chapterList.innerHTML = chapters.map(ch => `
       <li>
-        <a href="tianzhuling.github.io/lwcg/read/chapter/index.html?id=${ch.id}" target="_self">
+        <a href="https://tianzhuling.github.io/lwcg/read/chapter/index.html?id=${ch.id}" target="_self">
           ${ch.order_num !== null ? ch.order_num + '. ' : ''}${ch.title}
         </a>
       </li>
