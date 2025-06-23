@@ -117,12 +117,14 @@ button:hover {
       <label>章节标题：
         <input type="text" id="chapter-title" required />
       </label>
-      <label>漫画简介（可选）：
-  <input type="text" id="comic-description" />
-</label>
-<label>上传封面（可选）：
-  <input type="file" id="comic-cover" accept="image/*" />
-</label>
+      <div id="new-comic-extra" style="display: none;">
+  <label>漫画简介（可选）：
+    <input type="text" id="comic-description" />
+  </label>
+  <label>上传封面（可选）：
+    <input type="file" id="comic-cover" accept="image/*" />
+  </label>
+      </div>
       <label>上传图片：
         <input type="file" id="image-file" accept="image/*" multiple required />
       </label>
@@ -245,6 +247,74 @@ button:hover {
       const file = files[i];
       const filename = `${crypto.randomUUID()}-${file.name}`;
 
+ form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  showStatus('开始上传...');
+
+  const title = document.getElementById('comic-title').value.trim();
+  const chapter = document.getElementById('chapter-title').value.trim();
+  const files = document.getElementById('image-file').files;
+
+  const isNew = document.getElementById('new-comic-extra').style.display !== 'none';
+  const description = isNew ? document.getElementById('comic-description').value.trim() : null;
+  const coverFile = isNew ? document.getElementById('comic-cover').files[0] : null;
+
+  try {
+    let comicId;
+    let coverUrl = null;
+
+    // 检查是否存在该漫画
+    const { data: existingComic } = await supabase
+      .from('comics')
+      .select('id')
+      .eq('title', title)
+      .maybeSingle();
+
+    if (existingComic) {
+      comicId = existingComic.id;
+      showStatus('上传章节到已存在的漫画。');
+    } else {
+      // 是新漫画：如果有封面，先上传
+      if (coverFile) {
+        const coverFilename = `cover-${crypto.randomUUID()}-${coverFile.name}`;
+        const { data: coverUpload, error: coverError } = await supabase
+          .storage
+          .from('comics-image')
+          .upload(coverFilename, coverFile);
+
+        if (coverError) throw new Error('封面上传失败：' + coverError.message);
+
+        const { data: coverUrlData } = supabase
+          .storage
+          .from('comics-image')
+          .getPublicUrl(coverUpload.path);
+
+        coverUrl = coverUrlData.publicUrl;
+      }
+
+      // 插入新漫画
+      const { data: newComic } = await supabase
+        .from('comics')
+        .insert([{ title, description, cover_url: coverUrl }])
+        .select()
+        .single();
+
+      comicId = newComic.id;
+      showStatus('创建新漫画成功，开始上传章节...');
+    }
+
+    // 插入章节
+    const { data: newChapter } = await supabase
+      .from('chapters')
+      .insert([{ title: chapter, comic_id: comicId }])
+      .select()
+      .single();
+
+    // 上传每张图片
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const filename = `${crypto.randomUUID()}-${file.name}`;
+
       const { data: uploadData, error: uploadError } = await supabase
         .storage
         .from('comics-image')
@@ -273,12 +343,12 @@ button:hover {
     showStatus('上传成功！');
     form.reset();
     preview.innerHTML = '';
+    document.getElementById('new-comic-extra').style.display = 'none';
   } catch (err) {
     console.error(err);
     showStatus('上传失败：' + err.message, true);
   }
 });
-
     const browseForm = document.getElementById('browse-form');
     const browsePreview = document.getElementById('browse-preview');
 
