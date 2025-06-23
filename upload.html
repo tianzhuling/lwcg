@@ -179,73 +179,9 @@ button:hover {
       }
     });
 
-    form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  showStatus('开始上传...');
-  const title = document.getElementById('comic-title').value.trim();
-  const chapter = document.getElementById('chapter-title').value.trim();
-  const files = document.getElementById('image-file').files;
-  const description = document.getElementById('comic-description').value.trim();
-  const coverFile = document.getElementById('comic-cover').files[0];
+  
 
-  try {
-    let comicId;
-    let isNewComic = false;
-    let coverUrl = null;
-
-    // 检查漫画是否已存在
-    const { data: existingComic } = await supabase
-      .from('comics')
-      .select('id')
-      .eq('title', title)
-      .maybeSingle();
-
-    if (existingComic) {
-      comicId = existingComic.id;
-      showStatus('上传章节到已存在的漫画。');
-    } else {
-      isNewComic = true;
-
-      // 上传封面（如果提供）
-      if (coverFile) {
-        const coverFilename = `cover-${crypto.randomUUID()}-${coverFile.name}`;
-        const { data: coverUpload, error: coverError } = await supabase
-          .storage
-          .from('comics-image')
-          .upload(coverFilename, coverFile);
-
-        if (coverError) throw new Error('封面上传失败：' + coverError.message);
-
-        const { data: coverUrlData } = supabase
-          .storage
-          .from('comics-image')
-          .getPublicUrl(coverUpload.path);
-
-        coverUrl = coverUrlData.publicUrl;
-      }
-
-      // 插入新漫画
-      const { data: newComic } = await supabase
-        .from('comics')
-        .insert([{ title, description, cover_url: coverUrl }])
-        .select()
-        .single();
-
-      comicId = newComic.id;
-      showStatus('新建漫画成功，开始上传章节...');
-    }
-
-    // 插入章节
-    const { data: newChapter } = await supabase
-      .from('chapters')
-      .insert([{ title: chapter, comic_id: comicId }])
-      .select()
-      .single();
-
-    // 上传图片并插入
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const filename = `${crypto.randomUUID()}-${file.name}`;
+  
 
  form.addEventListener('submit', async (e) => {
   e.preventDefault();
