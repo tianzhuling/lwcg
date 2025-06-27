@@ -34,9 +34,8 @@ h1, h2, h3 {
 
 label {
   display: block;
-  margin-bottom: 1.2rem;
-  margin-right: 200px;
-  
+  margin-left:px;
+  margin-right:20px;
 }
 
 input[type="text"],
@@ -139,3 +138,19 @@ button:hover {
   border-radius: 999px;
   font-weight: bold;
   }
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left:10px;
+  margin-top:10px;
+}
+
+.custom-file-label:hover {
+  background-color: #45a049;
+}
