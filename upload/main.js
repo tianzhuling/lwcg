@@ -83,10 +83,9 @@ async function handleFiles(files) {
     const delBtn = document.createElement('button');
     delBtn.textContent = '❌';
     delBtn.style.position = 'absolute';
-    delBtn.style.position = 'absolute';
-delBtn.style.top = '50%';
-delBtn.style.left = '50%';
-delBtn.style.transform = 'translate(-50%, -50%)';  // 精确居中
+delBtn.style.top = '0';           // 设置顶部为 0
+delBtn.style.left = '0';          // 设置左侧为 0
+delBtn.style.transform = 'translate(0, 0)'; // 不进行任何额外的位移
 delBtn.style.background = '#e74c3c';
 delBtn.style.color = 'white';
 delBtn.style.border = 'none';
@@ -103,7 +102,6 @@ delBtn.onclick = async () => {
   updateImageIndexes();
   showStatus('已删除图片');
 };
-
     wrapper.appendChild(indexLabel);
     wrapper.appendChild(img);
     wrapper.appendChild(delBtn);
