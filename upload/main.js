@@ -8,6 +8,10 @@ function showStatus(msg, isError = false) {
   const statusEl = document.getElementById('status');
   statusEl.textContent = msg;
   statusEl.style.color = isError ? 'red' : 'var(--primary)';
+  
+  setTimeout(() => {
+    statusEl.textContent = '';
+  }, 3000); // 3秒后清除状态消息
 }
 
 function updateImageIndexes() {
@@ -40,6 +44,8 @@ document.getElementById('image-file').addEventListener('change', async (e) => {
 
 async function handleFiles(files) {
   const preview = document.getElementById('preview');
+  let totalFiles = files.length;
+  let uploadedFiles = 0;
 
   for (const file of files) {
     const filename = `${crypto.randomUUID()}-${file.name}`;
@@ -51,11 +57,17 @@ async function handleFiles(files) {
       continue;
     }
 
-    const { data: urlData } = supabase
+    const { data: urlData, error: urlError } = await supabase
       .storage.from('comics-image')
       .getPublicUrl(uploadData.path);
 
-    if (!urlData?.publicUrl) continue;
+    if (urlError) {
+      showStatus(`获取图片 URL 失败：${file.name}`, true);
+      continue;
+    }
+
+    uploadedFiles++;
+    updateUploadProgress(uploadedFiles, totalFiles);
 
     uploadedImages.push({ url: urlData.publicUrl, path: uploadData.path });
 
@@ -70,6 +82,19 @@ async function handleFiles(files) {
 
     const delBtn = document.createElement('button');
     delBtn.textContent = '❌';
+    delBtn.style.position = 'absolute';
+    delBtn.style.top = '50%';
+    delBtn.style.right = '50%';
+    delBtn.style.transform = 'translate(50%, -50%)';  // 居中
+    delBtn.style.background = '#e74c3c';
+    delBtn.style.color = 'white';
+    delBtn.style.border = 'none';
+    delBtn.style.borderRadius = '50%';
+    delBtn.style.fontSize = '14px';
+    delBtn.style.width = '24px';
+    delBtn.style.height = '24px';
+    delBtn.style.cursor = 'pointer';
+    delBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
     delBtn.onclick = async () => {
       preview.removeChild(wrapper);
       await supabase.storage.from('comics-image').remove([uploadData.path]);
@@ -88,103 +113,9 @@ async function handleFiles(files) {
   showStatus(`上传完成，共 ${uploadedImages.length} 张`);
 }
 
-document.getElementById('comic-title').addEventListener('blur', async () => {
-  const title = document.getElementById('comic-title').value.trim();
-  const extra = document.getElementById('new-comic-extra');
-
-  if (!title) {
-    extra.style.display = 'none';
-    return;
-  }
-
-  const { data: comic } = await supabase
-    .from('comics')
-    .select('id')
-    .eq('title', title)
-    .maybeSingle();
-
-  extra.style.display = comic ? 'none' : 'block';
-});
-
-document.getElementById('upload-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  showStatus('开始上传章节...');
-  document.getElementById('upload-progress').textContent = '';
-
-  const title = document.getElementById('comic-title').value.trim();
-  const chapter = document.getElementById('chapter-title').value.trim();
-  const isNew = document.getElementById('new-comic-extra').style.display !== 'none';
-  let description = isNew ? document.getElementById('comic-description').value.trim() : null;
-  if (description === '') description = null;
-  const coverFile = isNew ? document.getElementById('comic-cover').files[0] : null;
-
-  try {
-    let comicId;
-    let coverUrl = null;
-
-    const { data: existingComic, error: existError } = await supabase
-      .from('comics')
-      .select('id')
-      .eq('title', title)
-      .maybeSingle();
-
-    if (existError) throw existError;
-
-    if (existingComic) {
-      comicId = existingComic.id;
-    } else {
-      if (coverFile) {
-        const coverFilename = `cover-${crypto.randomUUID()}-${coverFile.name}`;
-        const { data: coverUpload, error: coverError } = await supabase
-          .storage.from('comics-image')
-          .upload(coverFilename, coverFile);
-        if (coverError) throw coverError;
-
-        const { data: coverUrlData } = supabase
-          .storage.from('comics-image')
-          .getPublicUrl(coverUpload.path);
-
-        coverUrl = coverUrlData.publicUrl;
-      }
-
-      const { data: newComic, error: insertError } = await supabase
-        .from('comics')
-        .insert([{ title, description, cover_url: coverUrl }])
-        .select()
-        .single();
-      if (insertError) throw insertError;
-
-      comicId = newComic.id;
-    }
-
-    const { data: newChapter, error: chapterError } = await supabase
-      .from('chapters')
-      .insert([{ title: chapter, comic_id: comicId }])
-      .select()
-      .single();
-    if (chapterError) throw chapterError;
-
-    const preview = document.getElementById('preview');
-    const wrappers = Array.from(preview.children);
-    for (let i = 0; i < wrappers.length; i++) {
-      const img = wrappers[i].querySelector('img');
-      const url = img.src;
-
-      const { error: insertImageError } = await supabase.from('images').insert([{
-        chapter_id: newChapter.id,
-        image_url: url,
-        order_num: i + 1,
-      }]);
-      if (insertImageError) throw insertImageError;
-    }
-
-    uploadedImages = [];
-    document.getElementById('upload-form').reset();
-    preview.innerHTML = '';
-    document.getElementById('new-comic-extra').style.display = 'none';
-    showStatus('上传成功 ✅');
-  } catch (err) {
-    console.error(err);
-    showStatus('上传失败：' + err.message, true);
-  }
-});
+function updateUploadProgress(uploadedFiles, totalFiles) {
+  const progressBar = document.getElementById('upload-progress');
+  const progress = Math.floor((uploadedFiles / totalFiles) * 100);
+  progressBar.textContent = `上传进度：${progress}%`;
+  progressBar.style.width = `${progress}%`;
+}
