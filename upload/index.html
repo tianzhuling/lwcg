@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>老王漫画组 - 上传平台</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+<body>
+  <a id="btn-back" href="https://tianzhuling.github.io/lwcg/index.html">← 返回首页</a>
+
+  <div class="container">
+    <h1>上传你的漫画</h1>
+    <h3>提示: 新漫画可添加封面和简介，封面和简介入口:<br>只填写漫画名，点击上传即可显示</h3>
+    
+    <form id="upload-form">
+      <label>漫画标题：
+        <input type="text" id="comic-title" required />
+      </label>
+      <label>章节标题：
+        <input type="text" id="chapter-title" required />
+      </label>
+
+      <div id="new-comic-extra" style="display: none;">
+        <label>漫画简介（可选）：
+          <input type="text" id="comic-description" />
+        </label>
+        <label>上传封面（可选）：
+          <input type="file" id="comic-cover" accept="image/*" />
+        </label>
+      </div>
+
+      <label>上传图片（支持拖拽或多选）：
+        <input type="file" id="image-file" accept="image/*" multiple />
+      </label>
+
+      <div id="preview">拖拽图片到这里上传</div>
+      <div id="upload-progress"></div>
+      <button type="submit">上传</button>
+    </form>
+
+    <p id="status"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
