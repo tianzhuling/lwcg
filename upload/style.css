@@ -35,6 +35,7 @@ h1, h2, h3 {
 label {
   display: block;
   margin-bottom: 1.2rem;
+  margin-right:20px;
 }
 
 input[type="text"],
