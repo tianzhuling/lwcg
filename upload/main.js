@@ -83,25 +83,26 @@ async function handleFiles(files) {
     const delBtn = document.createElement('button');
     delBtn.textContent = '❌';
     delBtn.style.position = 'absolute';
-    delBtn.style.top = '50%';
-    delBtn.style.right = '50%';
-    delBtn.style.transform = 'translate(50%, -50%)';  // 居中
-    delBtn.style.background = '#e74c3c';
-    delBtn.style.color = 'white';
-    delBtn.style.border = 'none';
-    delBtn.style.borderRadius = '50%';
-    delBtn.style.fontSize = '14px';
-    delBtn.style.width = '24px';
-    delBtn.style.height = '24px';
-    delBtn.style.cursor = 'pointer';
-    delBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-    delBtn.onclick = async () => {
-      preview.removeChild(wrapper);
-      await supabase.storage.from('comics-image').remove([uploadData.path]);
-      uploadedImages = uploadedImages.filter(img => img.path !== uploadData.path);
-      updateImageIndexes();
-      showStatus('已删除图片');
-    };
+    delBtn.style.position = 'absolute';
+delBtn.style.top = '50%';
+delBtn.style.left = '50%';
+delBtn.style.transform = 'translate(-50%, -50%)';  // 精确居中
+delBtn.style.background = '#e74c3c';
+delBtn.style.color = 'white';
+delBtn.style.border = 'none';
+delBtn.style.borderRadius = '50%';
+delBtn.style.fontSize = '14px';
+delBtn.style.width = '24px';
+delBtn.style.height = '24px';
+delBtn.style.cursor = 'pointer';
+delBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+delBtn.onclick = async () => {
+  preview.removeChild(wrapper);
+  await supabase.storage.from('comics-image').remove([uploadData.path]);
+  uploadedImages = uploadedImages.filter(img => img.path !== uploadData.path);
+  updateImageIndexes();
+  showStatus('已删除图片');
+};
 
     wrapper.appendChild(indexLabel);
     wrapper.appendChild(img);
