@@ -83,15 +83,17 @@ async function handleFiles(files) {
     const delBtn = document.createElement('button');
     delBtn.textContent = '❌';
     delBtn.style.position = 'absolute';
-delBtn.style.top = '5px';            // 给按钮一些间距（可以调整）
-delBtn.style.left = '5px';           // 给按钮一些间距（可以调整）
+delBtn.style.top = '5px';            // 设置顶部距离为 5px
+delBtn.style.right = '5px';           // 设置右侧距离为 5px
 delBtn.style.background = '#e74c3c';
 delBtn.style.color = 'white';
 delBtn.style.border = 'none';
 delBtn.style.borderRadius = '50%';
-delBtn.style.fontSize = '14px';
+delBtn.style.fontSize = '16px';       // 调整字体大小，确保❌号适合按钮
 delBtn.style.width = '24px';
 delBtn.style.height = '24px';
+delBtn.style.lineHeight = '24px';     // 使用line-height来垂直居中❌号
+delBtn.style.textAlign = 'center';    // 使文字水平居中
 delBtn.style.cursor = 'pointer';
 delBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
 delBtn.onclick = async () => {
