@@ -34,8 +34,7 @@ h1, h2, h3 {
 
 label {
   display: block;
-  margin-left: 0px;
-  margin-right:20px;
+  margin-right: 20px;
 }
 
 input[type="text"],
@@ -56,11 +55,12 @@ button {
   margin-top: var(--spacing);
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
   background: linear-gradient(to right, var(--primary-dark), var(--primary));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 #status {
@@ -87,7 +87,7 @@ button:hover {
   border: 2px dashed #ccc;
   border-radius: var(--radius);
   padding: 1rem;
-  background: #fefefe;
+  background: rgba(255, 255, 255, 0.9); /* 轻微透明 */
 }
 
 .image-wrapper {
@@ -137,7 +137,8 @@ button:hover {
   text-decoration: none;
   border-radius: 999px;
   font-weight: bold;
-  }
+}
+
 .custom-file-label {
   display: inline-block;
   padding: 10px 20px;
@@ -147,10 +148,10 @@ button:hover {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left:10px;
-  margin-top:10px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .custom-file-label:hover {
   background-color: #45a049;
-}
+  }
