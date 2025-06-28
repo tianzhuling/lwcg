@@ -1,0 +1,75 @@
+:root {
+  --main-bg: #f2f5fa;
+  --card-bg: #fff;
+  --primary: #2d89ef;
+  --primary-dark: #1b6dcf;
+  --radius: 16px;
+  --spacing: 20px;
+  --text-color: #333;
+  --border-color: #ccc;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: var(--spacing);
+  background-color: var(--main-bg);
+  color: var(--text-color);
+}
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: var(--spacing);
+  color: var(--primary-dark);
+}
+label {
+  display: block;
+  margin-right: 40px;
+}
+
+input[type="text"],
+input[type="file"],
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+
+button {
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  margin-top: var(--spacing);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, var(--primary-dark), var(--primary));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+#btn-back{
+  display: block;
+  width: fit-content;
+  margin: 0 auto 1.5rem;
+  padding: 10px 20px;
+  background: #555;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
+}
+#btn-this{
+  display: block;
+  width: fit-content;
+  margin: 0 auto 1.5rem;
+  padding: 10px 20px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
+}
