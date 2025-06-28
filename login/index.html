@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>登录</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="auth-container">
+    <h1>登录</h1>
+    <form id="login-form">
+      <input type="email" id="login-email" placeholder="请输入邮箱" required />
+      <input type="password" id="login-password" placeholder="请输入密码" required />
+      <button type="submit">登录</button>
+    </form>
+    <p>没有账号？<a href="register.html">注册</a></p>
+    <p id="login-error" style="color:red; display:none;">登录失败，请检查您的邮箱和密码</p>
+  </div>
+
+  <script type="module" src="./login.js"></script>
+</body>
+</html>
