@@ -8,8 +8,11 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>老王漫画组</h1>
-  <h2>LaoWang<br>CartoonGroup</h2>
+  <div style="display:flex;">
+  <h1>老王漫画组</h1><br>
+  <h2>LWCG</h2>
+  
+  </div>
   <hr>
   <h1>漫画搜索</h1>
   <!-- 新增跳转按钮 -->
@@ -17,7 +20,7 @@
 
   <input type="text" id="search-input" placeholder="输入漫画标题搜索..." autocomplete="off" />
   <ul id="search-results"></ul>
-
+  <script src="main.js"></script>
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
