@@ -52,14 +52,22 @@ button:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 #btn-back{
-  
+  display: block;
+  width: fit-content;
+  margin: 0 auto 1.5rem;
+  padding: 10px 20px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
 }
 #btn-this{
   display: block;
   width: fit-content;
   margin: 0 auto 1.5rem;
   padding: 10px 20px;
-  background: #111;
+  background: #555;
   color: #fff;
   text-decoration: none;
   border-radius: 999px;
