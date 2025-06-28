@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>登录</title>
+  <title>登录 - 老王漫画组</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-  <div class="auth-container">
-    <h1>登录</h1>
+  <div id="login-form">
+    <h2>登录</h2>
     <form id="login-form">
-      <input type="email" id="login-email" placeholder="请输入邮箱" required />
-      <input type="password" id="login-password" placeholder="请输入密码" required />
+      <label for="email">电子邮件</label>
+      <input type="email" id="email" placeholder="请输入电子邮件" required />
+
+      <label for="password">密码</label>
+      <input type="password" id="password" placeholder="请输入密码" required />
+
       <button type="submit">登录</button>
     </form>
-    <p>没有账号？<a href="register.html">注册</a></p>
-    <p id="login-error" style="color:red; display:none;">登录失败，请检查您的邮箱和密码</p>
+    <p>没有账号？ <a href="register.html">注册</a></p>
   </div>
 
-  <script type="module" src="./login.js"></script>
+  <!-- 引入外部 JavaScript -->
+  <script type="module" src="login.js"></script>
 </body>
 </html>
