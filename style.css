@@ -16,3 +16,8 @@ body {
   background-color: var(--main-bg);
   color: var(--text-color);
 }
+#btn-upload { display: inline-block; margin-bottom: 1rem; padding: .5rem 1rem; background: #2d8cf0; color: #fff; text-decoration: none; border-radius: 4px; }
+  #search-results li { list-style: none; margin-bottom: 1rem; border-bottom: 1px solid #ccc; padding-bottom: .5rem; display: flex; align-items: center; }
+  #search-results img { max-width: 100px; max-height: 140px; margin-right: 1rem; object-fit: cover; }
+  #search-results a { font-weight: bold; font-size: 1.2rem; color: #333; text-decoration: none; }
+  #search-results p { margin: .3rem 0 0; color: #666; flex: 1; }
