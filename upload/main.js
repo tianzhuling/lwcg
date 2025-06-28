@@ -83,8 +83,8 @@ async function handleFiles(files) {
     const delBtn = document.createElement('button');
     delBtn.textContent = '❌';
     delBtn.style.position = 'absolute';
-delBtn.style.top = '5px';            // 设置顶部距离为 5px
-delBtn.style.right = '5px';           // 设置右侧距离为 5px
+delBtn.style.top = '0px';            // 设置顶部距离为 5px
+delBtn.style.right = '0px';           // 设置右侧距离为 5px
 delBtn.style.background = '#e74c3c';
 delBtn.style.color = 'white';
 delBtn.style.border = 'none';
