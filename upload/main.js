@@ -91,6 +91,9 @@ delBtn.style.border = 'none';
 delBtn.style.borderRadius = '50%';
 delBtn.style.textAlign = 'center';    // 使文字水平居中
 delBtn.style.cursor = 'pointer';
+delBtn.style.position = 'relative'; // 让按钮有相对定位
+delBtn.style.top = '-4px';          // 向上偏移 4px
+delBtn.style.left = '-4px';         // 向左偏移 4px
 delBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
 delBtn.onclick = async () => {
   preview.removeChild(wrapper);
