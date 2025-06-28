@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>注册 - 老王漫画组</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div id="register-form">
+    <h2>注册</h2>
+    <form id="register-form">
+      <label for="email">电子邮件</label>
+      <input type="email" id="email" placeholder="请输入电子邮件" required />
+
+      <label for="password">密码</label>
+      <input type="password" id="password" placeholder="请输入密码" required />
+
+      <button type="submit">注册</button>
+    </form>
+    <p>已有账号？ <a href="login.html">登录</a></p>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const supabaseUrl = 'https://ukufabnmpevhmonxjmfb.supabase.co';
+    const supabaseKey = '你的supabase密钥';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById('register-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const { user, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      // 注册成功后跳转到登录页
+      alert('注册成功，请登录！');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
