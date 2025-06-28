@@ -23,7 +23,7 @@ h1, h2, h3 {
 }
 label {
   display: block;
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 input[type="text"],
@@ -50,6 +50,9 @@ button {
 button:hover {
   background: linear-gradient(to right, var(--primary-dark), var(--primary));
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+#btn-back{
+  
 }
 #btn-this{
   display: block;
