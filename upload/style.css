@@ -138,7 +138,17 @@ button:hover {
   border-radius: 999px;
   font-weight: bold;
 }
-
+#btn-this{
+  display: block;
+  width: fit-content;
+  margin: 0 auto 1.5rem;
+  padding: 10px 20px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
+}
 .custom-file-label {
   display: inline-block;
   padding: 10px 20px;
