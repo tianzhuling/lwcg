@@ -45,5 +45,6 @@ form.addEventListener('submit', async (e) => {
   localStorage.setItem('supabaseSession', JSON.stringify(data));
 
   // 跳转到首页
+  alert("登录成功！");
   window.location.href = '/lwcg/index.html';
 });
