@@ -18,6 +18,20 @@
   <hr>
   <h1>首页</h1>
   <!-- 新增跳转按钮 -->
-  <script type="module" src="main.js"></script>
+  <script type="module">
+  import { getUserStatus } from './auth.js';
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const userStatus = getUserStatus();
+
+    if (userStatus === 'logged') {
+      console.log('✅ 用户已登录');
+    } else if (userStatus === 'guest') {
+      console.log('🟡 用户以游客身份访问');
+    } else {
+      console.log('🔵 第一次访问，设置游客身份');
+    }
+  });
+  </script>
 </body>
 </html>
