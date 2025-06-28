@@ -89,7 +89,6 @@ delBtn.style.background = '#e74c3c';
 delBtn.style.color = 'white';
 delBtn.style.border = 'none';
 delBtn.style.borderRadius = '50%';
-delBtn.style.transform = 'translate(-10px, -10px)';
 delBtn.style.textAlign = 'center';    // 使文字水平居中
 delBtn.style.cursor = 'pointer';
 delBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
