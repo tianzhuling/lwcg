@@ -1,71 +1,29 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>老王漫画组‑搜索引擎</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>老王漫画组‑搜索引擎</title>
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-  <div style="display:flex;">
-  <h2>老王漫画组<br>LWCG</h2>
+  <div style="display: flex;">
+    <h2>老王漫画组<br>LWCG</h2>
 
-  <a id="btn-back" href="https://tianzhuling.github.io/lwcg/index.html">首页</a>
-  <a id="btn-back" href="https://tianzhuling.github.io/lwcg/upload/index.html" style="border-bottom:2px solid #000;padding-bottom:5px;">上传</a>
-  <a id="btn-this" href="https://tianzhuling.github.io/lwcg/search/index.html">搜索</a>
+    <a id="btn-back" href="https://tianzhuling.github.io/lwcg/index.html">首页</a>
+    <a id="btn-back" href="https://tianzhuling.github.io/lwcg/upload/index.html" style="border-bottom: 2px solid #000; padding-bottom: 5px;">上传</a>
+    <a id="btn-this" href="https://tianzhuling.github.io/lwcg/search/index.html">搜索</a>
   </div>
+
   <hr>
+
   <h1>漫画搜索</h1>
-  <!-- 新增跳转按钮 -->
-  <a id="btn-upload" href="upload/index.html">上传漫画</a>
+  <a id="btn-upload" href="../upload/index.html">上传漫画</a>
 
-  <input style="margin-right:40px;" type="text" id="search-input" placeholder="输入漫画标题搜索..." autocomplete="off" />
+  <input style="margin-right: 40px;" type="text" id="search-input" placeholder="输入漫画标题搜索..." autocomplete="off" />
   <ul id="search-results"></ul>
-  <script src="main.js"></script>
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    const supabaseUrl = 'https://ukufabnmpevhmonxjmfb.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrdWZhYm5tcGV2aG1vbnhqbWZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA1NTgyNjAsImV4cCI6MjA2NjEzNDI2MH0.xtW2AjVHYKvnjPjFqgYHF0iDLVB_KWhDi0MFU0NFKnA';
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    const input = document.getElementById('search-input');
-    const results = document.getElementById('search-results');
-
-    input.addEventListener('input', async () => {
-      const keyword = input.value.trim();
-      if (!keyword) {
-        results.innerHTML = '';
-        return;
-      }
-
-      const { data: comics, error } = await supabase
-        .from('comics')
-        .select('id, title, description, cover_url')
-        .ilike('title', `%${keyword}%`)
-        .limit(10);
-
-      if (error) {
-        results.innerHTML = `<li style="color:red;">搜索出错：${error.message}</li>`;
-        return;
-      }
-
-      if (!comics || comics.length === 0) {
-        results.innerHTML = '<li>没有找到匹配的漫画</li>';
-        return;
-      }
-
-      results.innerHTML = comics.map(comic => `
-        <li>
-          ${comic.cover_url ? `<img src="${comic.cover_url}" alt="${comic.title}封面" />` : ''}
-          <div>
-            <a href="read/comic/index.html?id=${comic.id}" target="_self">${comic.title}</a>
-            <p>${comic.description || '暂无简介'}</p>
-          </div>
-        </li>
-      `).join('');
-    });
-  </script>
+  <!-- 载入外部模块化 JS -->
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
