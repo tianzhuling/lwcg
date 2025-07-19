@@ -1,0 +1,13 @@
+.cancel{
+  display:block;
+  background:#C4C9FF;
+  width:100%;
+  height:30px;
+  border-radius: 15px;
+  color:white;
+}
+.cancel a{
+  display:block;
+  margin:0 auto;
+  text-align: center;
+}

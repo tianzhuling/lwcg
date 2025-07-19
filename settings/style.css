@@ -1,0 +1,68 @@
+body{
+  background: white;
+}
+.header{
+  height:0px;
+}
+.header .quit{
+  height:0px;
+}
+.header .title{
+  text-align:center;
+  overflow: hidden;
+}
+.header .title h1{
+  text-indent:-900px;
+}
+
+#quit {
+  position:absolute;
+  top:0;
+  background: #A9B0FF;
+  color:white;
+  height:40px;
+  width:60px;
+  text-align: center;
+  line-height:40px;
+  border-radius:5px;
+  
+ }
+.content{
+  width:100%;
+}
+.content h2{
+  text-align: center;
+}
+.content button{
+  display:block;
+  margin:10px auto;
+}
+html body .content .main .danger{
+  border-radius:3px;
+  color:#FF0000;
+  border:#FF0000 2px solid;
+}
+.head{
+  width:100%;
+  height:60px;
+  display:flex;
+  padding-left:100px;
+}
+.head img{
+  height:40px;
+  margin-top:10px;
+}
+span{
+  font-size:2em;
+}
+.head{
+  border-bottom:black 2px solid;
+}
+.main button{
+  border-radius:3px;
+  color:#4F4FFF;
+  border:#4F4FFF 2px solid;
+}
+.main div{
+  border-bottom:black 2px solid;
+}

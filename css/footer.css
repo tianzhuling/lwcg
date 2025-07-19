@@ -1,0 +1,25 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+.footer .bottom-nav{
+  
+  bottom: 0;
+  height: 60px;
+  display:flex;
+  background:#FAFAFA;
+  padding:15px;
+  font-size:1.5em;
+}
+.footer .aboutme{
+  background: #E8E8E8;
+  color:black;
+  text-align: center;
+}
+.footer .bottom-nav div{
+  margin-left:80px;
+  background: #F8F9FF;
+  }

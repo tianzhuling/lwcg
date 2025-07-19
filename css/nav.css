@@ -1,0 +1,22 @@
+nav{
+  position: sticky;
+  top:0;
+  height:60px;
+  background: #F9F9F9;
+  display:flex;
+  padding:10px;
+  padding-left:60px;
+  z-index: 5;
+}
+nav div{
+  margin-right:50px;
+  font-size:1.2em;
+  
+}
+.selected a{
+  color: #4F4FFF;
+}
+.selected{
+  border-bottom:2px #4F4FFF solid;
+  
+}

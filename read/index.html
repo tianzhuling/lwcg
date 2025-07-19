@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>老王漫画组 - 章节阅读</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/footer.css" />
+  <link rel="stylesheet" href="../css/header.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>
+        <img src="../image/icon.png" alt="icon"/>
+        <span>老王漫画组LWCG - 章节阅读</span>
+      </h1>
+    </div>
+  </header>
+
+  <nav>
+    <div class="quit">
+      <a href="../index.html">返回</a>
+    </div>
+    <div class="comic">
+      <a id="comic-nav">漫画</a>
+    </div>
+    <div class="chapter selected">
+      <a href="#">阅读</a>
+    </div>
+  </nav>
+
+  <div class="content" id="content">
+    <div class="info">
+      <div id="title"></div>
+      <div id="comic"></div>
+    </div>
+    <div id="chapter-content"></div>
+  </div>
+
+  <div class="footer">
+    <div class="move">
+        <div id="forAuthor" style="display:none">
+   <a id="editChapter">修改该章节</a>
+   <button id="removeChapter" class="">删除该章节</button>
+</div>
+      <div><a id="last">上一章</a></div>
+      <div><a id="next">下一章</a></div>
+      <div class="choose">
+        <button id="choose" type="button">自选</button>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="home selected"><a href="#">首页</a></div>
+      <div class="me"><a href="../me/index.html">我</a></div>
+    </div>
+    <div class="aboutme">
+      联系方式: tianzhuling@outlook.com
+    </div>
+  </div>
+
+  <!-- 弹窗 -->
+  <div id="chapter-selector" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close-button" id="close-selector">&times;</span>
+        <h2>选择章节</h2>
+      </div>
+      <div class="chapter-list" id="chapter-list"></div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

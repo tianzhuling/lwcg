@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>老王漫画组(LWCG)-首页</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/nav.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/footer.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+  <link rel="stylesheet" href="css/comic.css" type="text/css" media="all" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <h1><img src="image/icon.png"/><span>老王漫画组LWCG-首页</span></h1>
+    </div>  
+    <div class="search">
+        
+      <img src="image/search.png"/>
+      <input id="search" type="text" placeholder="搜索你感兴趣的漫画"/>
+      
+    </div>  
+  </header>
+  <nav>
+    <div class="look selected">
+      <a href="#">发现</a>
+    </div>
+    <div class="upload">
+      <a href="upload/index.html">上传</a>
+    </div>
+    <div class="search-nav">
+      <a href="search/index.html">搜索</a>
+    </div>
+  </nav>
+  <div class="content">
+    <div class="login" id="logReg" style="display:none">
+      <a href="login/index.html">登录</a>
+      <a href="regist/index.html">注册</a>
+    </div>
+    <div class="recommend-toggle">
+  <button id="sort-hot" class="active" >最热</button>
+  <button id="sort-new">最新</button>
+</div>
+
+<div class="end comics-list" id="recommend-list">
+  <!-- 推荐漫画内容插入这里 -->
+</div>
+  </div>
+  <div class="footer">
+   <div class="bottom-nav">  
+    <div class="home selected">
+      <a href="#">首页</a>
+    </div>
+    <div class="me">
+      <a href="me/index.html">我</a>
+    </div>
+  </div>  
+  <div class="aboutme">
+    联系方式:tianzhuling@outlook.com
+  </div>
+  </div>    
+  <script src="main.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+body header .logo {
+  height:80px;
+  background-color: #C4C9FF;
+  border:#4F4FFF 3px solid;
+  
+}
+body header .logo h1 img{
+  position: absolute;
+  height:60px;
+  top:10px;
+  left:10px;
+  border-radius: 50%;
+}
+body header .logo h1 span{
+  display: inline-block;
+  width:60%;
+  height:40px;
+  position: absolute;
+  font-size:0.6em;
+  top:30px;
+  bottom: 0;
+  right: 0;
+  left:80px;
+  color: #4F4FFF;
+}
+body header .search{
+  background:white;
+  height: 60px;
+}
+body header .search img{
+  position: absolute;
+  height:20px;
+  top:100px;
+  left:20px;
+  z-index:1;
+}
+body header .search input{
+  position: absolute;
+  height:40px;
+  width:90%;
+  background:white;
+  border:3px #C6C6C6 solid ;
+  top:90px;
+  left:15px;
+  padding-left: 20px;
+  border-radius: 20px;
+}
+body header .search input::placeholder{
+  color:#C6C6C6;
+}

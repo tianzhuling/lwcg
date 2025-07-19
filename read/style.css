@@ -1,0 +1,132 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+#chapter-container {
+  width:80%
+  ;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 24px;
+}
+
+#chapter-content img {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+#navigation {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#navigation button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+#navigation button:hover {
+  background-color: #45a049;
+}
+.move{
+  position:fixed;
+  bottom:100px;
+  width:100%;
+  background:#A9CFFF;
+  color:white;
+  border-radius:10px;
+  display:flex;
+}
+.move div{
+  
+  display:inline-block;
+  margin-left:50px;
+}
+.move button{
+  color:white;
+}
+
+//a
+
+
+/* 弹窗整体 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 弹窗内容 */
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80%;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-button {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.chapter-list button {
+  display: block;
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chapter-list button:hover {
+  background-color: #dceeff;
+}
+#title{
+  color:#4F4FFF;
+  text-align: center;
+  border-bottom:3px black solid;
+}
+#comic{
+  color:#D6D6D6;
+  text-align: center;
+  border-bottom:3px black solid;
+}
+#chapter-content{
+  margin-bottom:80px;
+}
+#divForAuthor{
+  background: #818CFF;
+}
