@@ -1,0 +1,61 @@
+#addComment{
+  position: fixed;
+  bottom:100px;
+  width:100%;
+  height:auto;
+  display:flex;
+  border-top:2px black solid;
+}
+#addComment #inputComment{
+  border:#E9E9E9 2px solid;
+  border-radius:5px;
+}
+#addComment #submit{
+  color:#4F44FF;
+  border:#4F44FF 2px solid;
+  border-radius:5px;
+}
+#title{
+  width:100%;
+  border-bottom:2px black solid;
+}
+#textTitle{
+  color:#4F44FF;
+  display:block;
+  margin:0 auto;
+  
+}
+ol li,
+ul li {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px 20px;
+  font-size: 16px;
+  color: #4F4FFF;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 列表悬停效果 */
+ul li:hover,
+ol li:hover {  /* 合并 ul 和 ol 的 hover 样式 */
+  background-color: #f0f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+#inputComment{
+  background:white;
+}
+.content{
+  margin-bottom:360px;
+}
+.userInfo{
+  display:flex;
+}
+.userInfo img{
+  height:40px;
+}
+.userInfo span::after{
+  content:":";
+}

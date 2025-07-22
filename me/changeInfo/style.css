@@ -1,0 +1,10 @@
+#changeAvatar{
+  background:#C4C9FF;
+  width:100%;
+  height:30px;
+  border-radius: 15px;
+  color:white;
+}
+#changeAvatar a{
+  margin: 0 auto;
+}

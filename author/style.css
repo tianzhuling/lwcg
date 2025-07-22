@@ -1,0 +1,70 @@
+#changeInfo{
+  position: relative;
+  left:120px;
+  bottom:40px;
+  height:40px;
+  width:60%;
+  background:#FFFFFF;
+  color:#4F4FFF;
+  border:#4F4FFF 3px solid;
+  border-radius:5px;
+  
+}
+#changeInfo a{
+  position:absolute;
+  left:60px;
+  line-height:40px;
+ }
+
+#pngAvatar{
+  height:130px;
+}
+#textUname{
+  margin-left:30px;
+  color:black;
+  font-size:1.8em;
+  text-align: center;
+}
+#textNname{
+  font-size:1.2em;
+  color:#C6C6C6;
+  text-align: center;
+  margin-left:15px;
+}
+#textBio{
+  color:#D2D2D2;
+}
+#divBio{
+  width:120px;
+  overflow: hidden;
+  white-space: nowrap; /* 强制文本不换行 */
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
+}
+#lookBio{
+  position:relative;
+}
+#lookBio a img{
+  position:absolute;
+  height:30px;
+  left:40px;
+  bottom:-20px;
+}
+.user{
+  border-bottom:3px black;
+}
+#avatar img{
+  border-radius:50%;
+}
+.content{
+  margin-bottom:100px;
+}
+.active{
+  font-size:1.2em;
+  color: #4F4FFF;
+  border-bottom:3px #4F4FFF solid;
+}
+.recommend-toggle{
+  margin-top:20px;
+  padding-bottom:10px;
+  border-bottom:3px black solid;
+}

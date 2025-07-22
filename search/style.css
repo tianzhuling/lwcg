@@ -1,0 +1,50 @@
+body{
+  background: #EBEBEB;
+}
+.header{
+  height:0px;
+}
+.header .quit{
+  height:0px;
+}
+.header .title{
+  text-align:center;
+  overflow: hidden;
+}
+.header .title h1{
+  text-indent:-900px;
+}
+.content{
+  margin-bottom:50px;
+}
+.content .search{
+  position: relative;
+  background: #FFFFFF;
+  height:60px;
+  padding: 10px;
+  display:flex;
+}
+.content .search input{
+  width:80%;
+  height:40px;
+  background: #EBEBEB;
+  border-radius:2px;
+  padding-left:20px;
+  margin-right:20px;
+}
+.content .search img{
+  position: absolute;
+  z-index: 2;
+  height:20px;
+  bottom:20px;
+  
+}
+#quit {
+  background: #A9B0FF;
+  color:white;
+  height:40px;
+  width:60px;
+  text-align: center;
+  line-height:40px;
+  border-radius:5px;
+ }

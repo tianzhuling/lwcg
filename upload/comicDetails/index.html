@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>老王漫画组 (LWCG) - 章节</title>
+
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/nav.css" />
+  <link rel="stylesheet" href="../../css/footer.css" />
+  <link rel="stylesheet" href="../../css/header.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- 顶部 Header -->
+  <header>
+    <div class="logo">
+      <h1>
+        <img src="../../image/icon.png" alt="老王漫画组LOGO" />
+        <span>老王漫画组 LWCG - 章节</span>
+      </h1>
+    </div>
+    <!-- 如果后续想启用搜索框，可以打开以下代码 -->
+    <!--
+    <div class="search">
+      <img src="../../image/search.png" alt="搜索图标" />
+      <input type="text" placeholder="搜索你感兴趣的内容" />
+    </div>
+    -->
+  </header>
+
+  <!-- 顶部导航栏 -->
+  <nav>
+    <div class="comic">
+      <a href="../../index.html">返回</a>
+    </div>
+    <div class="comic">
+      <a href="../index.html">漫画</a>
+    </div>
+    <div class="chapter selected">
+      <a href="../chapter/index.html">章节</a>
+    </div>
+  </nav>
+
+  <!-- 主体内容 -->
+  <main class="content">
+    <!-- 漫画信息区 -->
+    <section class="aboutComic">
+      <div id="cover"></div>
+
+      <div id="title"></div>
+
+      <div id="bio"></div>
+
+      <div id="views"></div>
+
+      <div id="author" style="cursor:pointer;"></div>
+
+      <div id="permission"></div>
+      <div id="comment">
+        
+      </div>
+      <a href="../../comment/index.html" id="aComment"><img id="pngComment" src="../../image/comment.png"/>
+      </a>
+    </section>
+
+    <!-- 章节信息区 -->
+    <section class="aboutChapter">
+      <h2 id="numOfChapters">全章节</h2>
+
+      <ol class="chapter-list" id="chapters">
+        <!-- 动态章节插入 -->
+      </ol>
+
+      <!-- 创建章节按钮 -->
+      <div id="addChapter"></div>
+
+      <!-- 编辑漫画按钮（作者权限才显示） -->
+      <div id="divEditComic" class="editComic" style="display: none;">
+        <button id="editComic">编辑该漫画</button>
+      </div>
+
+      <!-- 删除漫画按钮（作者权限才显示） -->
+      <div id="divRemoveComic" class="removeComic" style="display: none;">
+        <button id="removeComic" class="danger">删除该漫画</button>
+      </div>
+    </section>
+    
+  </main>
+
+  <!-- 页脚 Footer -->
+  <footer class="footer">
+    <div class="bottom-nav">
+      <div class="home selected">
+        <a href="../../index.html">首页</a>
+      </div>
+      <div class="me">
+        <a href="../../me/index.html">我</a>
+      </div>
+    </div>
+    <div class="aboutme">
+      联系方式: <a href="mailto:tianzhuling@outlook.com">tianzhuling@outlook.com</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript 模块 -->
+  <script src="main.js" type="module"></script>
+</body>
+</html>

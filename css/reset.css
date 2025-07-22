@@ -1,0 +1,51 @@
+/* 重置所有元素的 margin 和 padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HTML5 元素显示为块元素 */
+article, aside, footer, header, nav, section, main, figure, figcaption {
+  display: block;
+}
+
+/* 设置基础字体样式 */
+body {
+  line-height: 1.5;
+  font-family: sans-serif;
+  background-color: #FFFFFF;
+  color: #000;
+}
+
+/* 去掉列表样式 */
+ul, ol {
+  list-style: none;
+}
+
+/* 清除链接默认样式 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 图片最大宽度为100%，自适应 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 表单元素基础样式 */
+button, input, textarea, select {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* 表格边框合并 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

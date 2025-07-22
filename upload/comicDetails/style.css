@@ -1,0 +1,175 @@
+/* 封面容器 */
+#cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;         /* 更适应多端设备的比例控制 */
+  overflow: hidden;
+  position: relative;
+  border-bottom: 2px black solid;
+}
+
+/* 页面主要内容下边距 */
+.content {
+  margin-bottom: 100px;
+}
+
+/* 封面图片样式 */
+#cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* 填满容器，裁剪溢出部分 */
+}
+
+/* 有序/无序列表样式 */
+ol li,
+ul li {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px 20px;
+  font-size: 16px;
+  color: #4F4FFF;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 列表悬停效果 */
+ul li:hover,
+ol li:hover {  /* 合并 ul 和 ol 的 hover 样式 */
+  background-color: #f0f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 标题区域 */
+#title {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  border-bottom: 2px black solid;
+}
+
+#title h1 {
+  color: black;
+  text-align: center;
+}
+
+/* 简介区域 */
+#bio {
+  margin-top: 10px;
+  width: 100%;
+  height: 100px;
+  overflow: auto;
+  color: #A6A6A6;
+  border-bottom: 3px black solid;
+  padding: 10px;
+}
+
+/* 作者区域 */
+#author {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  border-bottom: 3px black solid;
+  position: relative;
+}
+
+#author:hover {
+  background: #DBDBDB;
+}
+
+#author span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #4F4FFF;
+}
+
+/* 作者头像 */
+.avatar {
+  position: absolute;
+  height: 50px;
+  left: 100px;
+}
+
+.avatar img {
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* 作者信息 */
+.info {
+  position: absolute;
+  left: 200px;
+}
+
+/* 添加章节按钮 */
+#addChapter {
+  margin: 100px auto 20px auto;
+  width: 100px;
+  border: 2px #4F4FFF solid;
+  border-radius: 5px;
+  color: #4F4FFF;
+  display: block;
+  text-align: center;
+}
+
+/* 章节信息标题 */
+.aboutChapter h2 {
+  color: black;
+  text-align: center;
+}
+
+/* 权限信息 */
+#permission span {
+  color: #C4C9FF;
+  text-align: center;
+}
+
+/* 编辑区域 */
+.editComic {
+  position: relative;
+  width: 100%;
+  border-top: 3px black solid;
+  padding-top: 20px;
+  margin: 20px auto;
+}
+
+/* 编辑按钮 */
+#editComic {
+  display: block;
+  color: #4F4FFF;
+  background: white;
+  border: #4F4FFF 2px solid;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+/* 删除区域 */
+.removeComic {
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+}
+
+#removeComic {
+  display: block;
+  margin: 0 auto;
+}
+
+/* 删除按钮警示样式 */
+.danger {
+  border-radius: 5px;
+  color: #FF0000;
+  border: #FF0000 2px solid;
+}
+
+/* 通用按钮居中样式（可复用） */
+.centerButton {
+  display: block;
+  margin: 0 auto;
+}
+#pngComment{
+  height:40px;
+  display: block;
+  margin: 0 auto;
+}

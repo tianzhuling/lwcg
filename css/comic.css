@@ -1,0 +1,82 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+}
+
+/* 漫画列表样式 */
+.comics-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+
+}
+
+/* 每个漫画的展示项 */
+.comic-item {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.comic-item:hover {
+  transform: translateY(-5px);
+}
+
+/* 漫画封面 */
+.comic-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* 漫画信息部分 */
+.comic-info {
+  padding: 15px;
+}
+
+.comic-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.comic-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.view-more {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #4F4FFF;
+  font-weight: bold;
+}
+
+.view-more:hover {
+  text-decoration: underline;
+}
+#addComic{
+  width:120px;
+  height:40px;
+  color: #4F4FFF;
+  background: white;
+  border:#4F4FFF solid 3px;
+  margin:50px auto;
+  border-radius:5px;
+}
+#addComic a{
+  position: absolute;
+  line-height:40px;
+  left:140px;
+}

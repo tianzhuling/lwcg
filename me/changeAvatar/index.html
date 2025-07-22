@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>老王漫画组(LWCG)-修改头像</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/footer.css" />
+  <link rel="stylesheet" href="../../css/form.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css" />
+</head>
+
+<body>
+  <div class="header">
+    <div class="quit">
+      <a href="../index.html">＜</a>
+    </div>
+    <div class="title">
+      <h1>老王漫画组(LWCG)-修改头像</h1>
+    </div>
+  </div>
+
+  <form>
+    <div class="avatar">
+      <span>头像</span>
+      <input type="file" accept="image/*" id="avatarInput" />
+    </div>
+
+    <img id="imageToCrop" />
+
+    <canvas id="croppedCanvas" width="100" height="100"></canvas>
+
+    <div class="submit">
+      <button class="submit" type="button" id="submit">提交</button>
+    </div>
+  </form>
+
+  <div class="footer">
+    <div class="aboutme">联系方式: tianzhuling@outlook.com</div>
+  </div>
+
+  <script src="main.js" type="module"></script>
+</body>
+
+</html>

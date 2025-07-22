@@ -1,0 +1,14 @@
+
+form .code button{
+  
+  background: #BDC3FF;
+  color:white;
+  border-radius:20px;
+}
+form .code input{
+  position: relative;
+  bottom:10px;
+}
+.else a{
+  color:#BDC3FF;
+}

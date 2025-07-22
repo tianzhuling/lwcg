@@ -1,0 +1,22 @@
+#preview-label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+#preview {
+  display: block;
+  margin-top: 5px;
+}
+
+form{
+  margin-bottom:200px;
+}
+#croppedCanvas {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;  /* ✅ 关键：显示为圆形 */
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  object-fit: cover;
+}
