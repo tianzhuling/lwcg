@@ -9,5 +9,7 @@
 ## 如何下载这个软件
 1.网盘提取码828c:[点击下载APK](https://pan.baidu.com/s/1mRm5mrUS2pMVlOaEudwr7g 
 )
+
 2.supabase数据库下载快但随时无效[点击下载](https://ukufabnmpevhmonxjmfb.supabase.co/storage/v1/object/public/download//lwcg%20v1.0.8.apk)
+
 3.通过github releases:[点击进入releases](https://github.com/tianzhuling/lwcg/releases)
